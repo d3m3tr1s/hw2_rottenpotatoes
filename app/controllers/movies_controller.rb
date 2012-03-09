@@ -16,19 +16,19 @@ class MoviesController < ApplicationController
 	end	
 	if params.has_key?(:commit) or params.has_key?(:ratings)
 		session[:ratings] = params[:ratings]
-	elsif
+	else
 		params[:ratings] = session[:ratings]
 		flag += 1 unless session[:ratings] == nil
 	end
 	
-	@sort = params[:sort]
-	@ratings = []
-	@ratings = params[:ratings].keys unless	params[:ratings] == nil
-	
 	if flag == 2
 		session.clear
 		redirect_to params
-	end
+	end	
+	
+	@sort = params[:sort]
+	@ratings = []
+	@ratings = params[:ratings].keys unless	params[:ratings] == nil
 	
 	@all_ratings = Movie.ratings
 	if @ratings != []
