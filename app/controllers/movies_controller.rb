@@ -15,8 +15,7 @@ class MoviesController < ApplicationController
 		flag += 1
 	end	
 	if params.has_key?(:commit) or params.has_key?(:ratings)
-		session[:ratings] = nil
-		session[:ratings] = params[:ratings] unless params[:ratings] == nil
+		session[:ratings] = params[:ratings]
 	elsif
 		params[:ratings] = session[:ratings]
 		flag += 1 unless session[:ratings] == nil
